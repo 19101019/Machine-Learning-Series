@@ -1,0 +1,8 @@
+
+# ---------------------------
+# Save Model for Deployment
+# ---------------------------
+joblib.dump(best_model, "final_model.pkl")
+
+# Load model later
+# loaded_model = joblib.load("final_model.pkl")

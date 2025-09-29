@@ -3,6 +3,8 @@
 # =========================================================
 
 
+
+
 # ---------------------------
 # 0. Install dataset from Kaggle
 # ---------------------------
@@ -13,11 +15,14 @@ od.download("https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-databas
 # ====={"username":"technozsoftware","key":"287471c7934797f80ef81bc64e4d9ea6"}=============
 
 
+
+
 # ---------------------------
 # 1. Install dataset from CSV file
 # ---------------------------
 import pandas as pd
 df = pd.read_csv("file.csv")
+
 
 
 

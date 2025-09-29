@@ -4,6 +4,11 @@
 # ---------------------------
 
 
+# -------------------------------------------------------------------------------------------------------------------
+#  Hard-Encoding: if you know what each variety actually means like gender, then you can manually map them to numbers
+#  Label-Encoding: if you have categories whose meaning is not understandable 
+#  One-hot-encoding: if you have categories where you can put one in 1 and rest 0 then one hot Encoding(like yes,no)
+# -------------------------------------------------------------------------------------------------------------------
 
 # Label Encoding for binary categories : Best for ordinal data (where order matters: Low < Medium < High). Each unique category is assigned an integer.
 from sklearn.preprocessing import LabelEncoder()  # NEED IMPORT IN LABEL BUT BYDEFAULT FOR ONE-HOT

@@ -1,6 +1,39 @@
 # ---------------------------
-# 6. Exploratory Data Analysis (EDA)
+# Interpret correlations and visualize data with various plots
 # ---------------------------
+
+# calculate correlation matrix
+corr_matrix = df.corr(numeric_only=True)
+
+# plot heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(corr_matrix, annot=True, cmap="gray", fmt=".2f", linewidths=0.5)
+plt.title("Correlation Matrix of Health & Lifestyle Dataset", fontsize=16)
+plt.show()
+
+
+# Look for features that have a strong positive or negative (absolute) correlation with your target (e.g., HeartDisease).
+# Keep features highly correlated with the target and drop those with low correlation.
+# Also, check for multicollinearity (features highly correlated with each other) and consider dropping one of the correlated features to reduce redundancy.
+
+df = df.drop(columns=['ChestPainType', 'RestingECG'])
+
+
+#set the descending style correlation
+corr_with_target = corr_matrix['HeartDisease'].abs().sort_values(ascending=False)
+print(corr_with_target)
+
+
+
+# Scale/normalize numeric features: Use StandardScaler or MinMaxScaler to bring values to a similar range do for all numerical ones that are non-categorical
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+df_scaled = scaler.fit_transform(df.select_dtypes(include=np.number))
+
+
+
+
+
 
 # Line Plot → Shows trends and growth patterns over time.
 # Bar Chart → Compares categories at a glance.
@@ -9,6 +42,7 @@
 # Boxplot → Detects outliers and visualizes data spread.
 # Scatter / Bubble Plot → Shows relationships and clusters between two or more variables.
 # Pie Chart → Displays proportion of categories in the dataset.
+
 
 
 # Line plot

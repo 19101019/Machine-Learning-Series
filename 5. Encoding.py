@@ -10,13 +10,18 @@
 #  One-hot-encoding: if you have categories where you can put one in 1 and rest 0 then one hot Encoding(like yes,no)
 # -------------------------------------------------------------------------------------------------------------------
 
-# Label Encoding for binary categories : Best for ordinal data (where order matters: Low < Medium < High). Each unique category is assigned an integer.
-from sklearn.preprocessing import LabelEncoder()  # NEED IMPORT IN LABEL BUT BYDEFAULT FOR ONE-HOT
+# Hard Encoding
 
-df = pd.DataFrame({
-    'Education': ['High School', 'Bachelors', 'Masters', 'PhD', 'Bachelors']})
-y = LabelEncoder()
-df['Education_Encoded'] = y.fit_transform(df['Education'])
+df["Sex"] = df["Sex"].str.strip().str.upper()     # Clean values (remove spaces and uppercase)
+df["Sex"] = df["Sex"].map({'M': 1, 'F': 0})
+print(df["Sex"].unique())
+
+
+
+# Label Encoding for binary categories : Best for ordinal data (where order matters: Low < Medium < High). Each unique category is assigned an integer.
+
+from sklearn.preprocessing import LabelEncoder  # NEED IMPORT IN LABEL BUT BYDEFAULT FOR ONE-HOT
+df['ChestPainType'] = LabelEncoder().fit_transform(df['ChestPainType'])
 print(df)
 
 

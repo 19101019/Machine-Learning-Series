@@ -18,6 +18,10 @@ df = df.fillna(0)
 # ---------------------------
 # Drop rows with missing target
 df = df.dropna(subset=['target'])
+# Drop rows as per index
+df = df.drop(index=[0, 1])
+# Drop multiple columns 
+df = df.drop(columns=['ChestPainType', 'RestingECG'])
 
 # Check for duplicate rows and drop them 
 print(df.duplicated().sum())

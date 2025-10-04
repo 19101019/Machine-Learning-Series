@@ -21,7 +21,8 @@ print(df["Sex"].unique())
 # Label Encoding for binary categories : Best for ordinal data (where order matters: Low < Medium < High). Each unique category is assigned an integer.
 
 from sklearn.preprocessing import LabelEncoder  # NEED IMPORT IN LABEL BUT BYDEFAULT FOR ONE-HOT
-df['ChestPainType'] = LabelEncoder().fit_transform(df['ChestPainType'])
+for col in ['Sex', 'ChestPainType', 'RestingECG', 'ExerciseAngina', 'ST_Slope']:
+    df[col] = LabelEncoder.fit_transform(df[col])
 print(df)
 
 

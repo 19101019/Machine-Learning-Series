@@ -71,3 +71,5 @@ df = pd.read_json("file.json")
 # ⚡ pd.json_normalize() is basically a flattening tool that turns nested JSON → clean DataFrame, making it easy for analysis.
 
 # ---------------------------
+
+

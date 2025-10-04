@@ -18,14 +18,12 @@ plt.show()
 
 df = df.drop(columns=['ChestPainType', 'RestingECG'])
 
-
 #set the descending style correlation
 corr_with_target = corr_matrix['HeartDisease'].abs().sort_values(ascending=False)
 print(corr_with_target)
 
-
-
-# Scale/normalize numeric features: Use StandardScaler or MinMaxScaler to bring values to a similar range do for all numerical ones that are non-categorical
+#  Visualise the correlation matrix again after dropping some columns ------>> Graph visualisation ----->>  Scale/normalize numeric features
+# Use StandardScaler or MinMaxScaler to bring values to a similar range do for all numerical ones that are non-categorical
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 df_scaled = scaler.fit_transform(df.select_dtypes(include=np.number))
@@ -42,6 +40,75 @@ df_scaled = scaler.fit_transform(df.select_dtypes(include=np.number))
 # Boxplot → Detects outliers and visualizes data spread.
 # Scatter / Bubble Plot → Shows relationships and clusters between two or more variables.
 # Pie Chart → Displays proportion of categories in the dataset.
+
+
+
+
+# Histogram ------- for 1 feature                                         || Categorical ||
+plt.figure(figsize=(10,6))
+if 'value' in df.columns:
+    plt.hist(df['value'], bins=30, edgecolor='k')
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+    plt.title('Histogram of Value Distribution')
+    plt.show()
+
+
+#  ---------------- for multiple features
+import matplotlib.pyplot as plt
+features = ['Sex', 'RestingBP', 'Cholesterol']
+plt.figure(figsize=(15, 5))
+for i, col in enumerate(features, 1):
+    plt.subplot(1, 3, i)   # 1 row, 3 columns
+    plt.hist(df[col], bins=30, edgecolor='k')
+    plt.xlabel(col)
+    plt.ylabel('Frequency')
+    plt.title(f'Histogram of {col}')
+plt.tight_layout()
+plt.show()
+
+
+
+
+# Heatmap
+plt.figure(figsize=(10,8))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap')    
+plt.show()
+ 
+
+
+
+# Scatterplot ( for numerical data or regression types) - 1 feature
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8,6))
+plt.scatter(df.index, df['RestingBP'], alpha=0.6, edgecolor='k')
+plt.xlabel('Index')
+plt.ylabel('RestingBP')
+plt.title('Scatter Plot of RestingBP')
+plt.show()
+
+
+# Scatterplot ( for numerical data or regression types) - multiple feature
+
+import seaborn as sns
+plt.figure(figsize=(10,8))
+features = ['RestingBP', 'Cholesterol', 'MaxHR', 'Age']
+sns.pairplot(df[features], diag_kind='hist')
+plt.show()
+
+
+
+
+
+# Pie chart
+plt.figure(figsize=(8,8))  
+if 'category' in df.columns:
+    df['category'].value_counts().plot.pie(autopct='%1.1f%%', startangle=140)
+    plt.title('Pie Chart of Category Distribution')
+    plt.ylabel('')
+    plt.show()
 
 
 
@@ -64,30 +131,4 @@ if 'category' in df.columns and 'value' in df.columns:
     plt.xlabel('Category')
     plt.ylabel('Value')
     plt.title('Bar Chart of Value by Category')
-    plt.show()
-
-
-# Histogram
-plt.figure(figsize=(10,6))
-if 'value' in df.columns:
-    plt.hist(df['value'], bins=30, edgecolor='k')
-    plt.xlabel('Value')
-    plt.ylabel('Frequency')
-    plt.title('Histogram of Value Distribution')
-    plt.show()
-
-
-# Heatmap
-plt.figure(figsize=(10,8))
-sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
-plt.title('Correlation Heatmap')    
-plt.show()
- 
-
-# Pie chart
-plt.figure(figsize=(8,8))  
-if 'category' in df.columns:
-    df['category'].value_counts().plot.pie(autopct='%1.1f%%', startangle=140)
-    plt.title('Pie Chart of Category Distribution')
-    plt.ylabel('')
     plt.show()

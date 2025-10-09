@@ -12,8 +12,7 @@
 
 # Hard Encoding
 
-df["Sex"] = df["Sex"].str.strip().str.upper()     # Clean values (remove spaces and uppercase)
-df["Sex"] = df["Sex"].map({'M': 1, 'F': 0})
+df["Sex"] = df["Sex"].str.strip().str.upper().map({'M': 1, 'F': 0})     # Clean values (remove spaces and uppercase)
 print(df["Sex"].unique())
 
 
@@ -29,9 +28,7 @@ print(df)
 
 
 # One-Hot Encoding : Best for nominal categorical data (no order)
-df_encoded = pd.get_dummies(df, columns=['Color'])
-print(df_encoded)
-
+df = pd.get_dummies(df, columns=['Region'], drop_first=True)
 
 
 

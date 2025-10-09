@@ -79,7 +79,7 @@ plt.show()
 
 
 
-# Scatterplot ( for numerical data or regression types) - 1 feature
+# Scatterplot  - 1 feature                                                 ( for regression types) - 1 feature
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(8,6))

@@ -12,7 +12,6 @@ model_filename = 'iris_classifier_model.joblib'
 
 # 2. Save the trained model to a file
 joblib.dump(model, model_filename)
-
 print(f"Model saved to {model_filename}")
 
 # --- How to load and use it later ---
